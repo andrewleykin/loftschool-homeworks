@@ -15,7 +15,7 @@ describe('AuthProvider', () => {
 
   describe('State содержит ключи', () => {
     const stateKeys = Object.keys(wrapper.state());
-    ['email', 'authorizeError', 'isAuthorized'].forEach(field => {
+    ['email', 'password', 'authorizeError', 'isAuthorized'].forEach(field => {
       it(field, () => {
         expect(stateKeys.indexOf(field)).not.toBe(-1);
       });
@@ -60,7 +60,7 @@ describe('AuthProvider', () => {
 
   describe('Функция logout', () => {
     it('Устанавливает state.isAuthorized: false', () => {
-      wrapper.instance().authorize('stu@dent.co', '123');
+      wrapper.instance().authorize('stu@dent.com', '123');
       wrapper.instance().logout()
       expect(wrapper.state().isAuthorized).toBeFalsy();
     });

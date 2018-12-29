@@ -4,11 +4,11 @@ import './Layout.css';
 
 class Layout extends PureComponent {
   render() {
-    return 'empty';
+    return 'empty'
   }
 
   renderHeader(HeaderChild) {
-    return 'empty';
+    return 'empty'
   }
 
   renderFooter(FooterChild) {
