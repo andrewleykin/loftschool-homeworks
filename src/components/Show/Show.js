@@ -11,22 +11,30 @@ export default class Show extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    return { showId: nextProps.showId }
+    if (nextProps.showId !== prevState.showId) {
+      return {
+        showId: nextProps.showId,
+        data: null
+      }
+    }
+    return null;
   }
 
   componentDidUpdate() {
-    const { showId } = this.state
-    getShowInfo(showId).then(response=> {
-      this.setState({ data: response })
-    })
+    const { data, showId } = this.state;
+    if (data == null && showId !== '') {
+      getShowInfo(showId).then(data => {
+        this.setState({ data });
+      });
+    }
   }
 
   render() {
     const { showId, data } = this.state
-    if (!showId) return <p className="show-inforation t-show-info">Шоу не выбрано</p>
-    if (!data) return ''
+    if (!showId || data == null) return <p className="show-inforation t-show-info">Шоу не выбрано</p>
     return (
       <div className="show">
+        <h2>{showId}</h2>
         <img className="show-image" src={data.image.medium} alt={data.name} />
         <h2 className="show-label t-show-name">{data.name}</h2>
         <p className="show-text t-show-genre">
