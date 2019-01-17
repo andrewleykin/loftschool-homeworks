@@ -15,7 +15,7 @@ describe('AuthProvider', () => {
 
   describe('State содержит ключи', () => {
     const stateKeys = Object.keys(wrapper.state());
-    ['email', 'password', 'authorizeError', 'isAuthorized'].forEach(field => {
+    ['email', 'authorizeError', 'isAuthorized'].forEach(field => {
       it(field, () => {
         expect(stateKeys.indexOf(field)).not.toBe(-1);
       });
